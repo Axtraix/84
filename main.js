@@ -1,89 +1,83 @@
-// Create a reference for the canvas
-canvas = documen.getElementById("myCanvas");
-ctx = camvas.getContext("2d")
+nasa_images=["image1.jpg","image2.jpg","image3.jpg","mage4.jpg","image5.jpg"]
+var n =Math.floor(Math.random()*4);
+console.log("n="+n)
+background_image=nasa_images[n];
+rover_image="rover.png"
 
-img_width = 300;
-img_height = 100;
+canvas=document.getElementById("myCanvas")
+ctx=canvas.getContext("2d")
+rover_width=100;
+rover_height=90;
+rover_x=10;
+rover_y=10;
 
-var img_image;
-
-img_x = 100;
-img_y = 100;
-
-function add() {
-	img_imgTag = new Image(); //defining a variable with a new image
-	img_imgTag.onload = uploadimg; // setting a function, onloading this variable
-	img_imgTag.src = img_image;   // load image
+function addimages(){
+    background_image_tag=new Image();
+    background_image_tag.onload=uploadbackground;
+    background_image_tag.src=background_image
+     
+    roverimagetag=new Image();
+    roverimagetag.onload=uploadrover;
+    roverimagetag.src=rover_image;
 }
-
-function uploadimg() {
-
-	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
+function uploadbackground(){
+    ctx.drawImage(background_image_tag,0,0,canvas.width,canvas.height)
+    
 }
-
-//Write a code to grab the key-pressed event
+function uploadrover(){
+    ctx.drawImage(roverimagetag,rover_x,rover_y,rover_width,rover_height)
+}
 window.addEventListener("keydown",my_keydown);
-function my_keydown(e)
-{
-	keyPressed = e.keyCode;
-	console.log(keyPressed);
-	
-		if((keyPressed >=97 && keyPressed<=122)|| (keyPressed >=65 && keyPressed<=90))
-		//write a code to check the type of key pressed
-	else{
-		otherkey();
-		document.getElementById("d1").innerHTML="You pressed symbol or other key";
-	}
+function my_keydown(e){
+    keypressed=e.keyCode;
+    if(keypressed=='38'){
+    up_arrow();
+    console.log("key up has been pressed")
+    }
+
+    if(keypressed=='40'){
+        down_arrow();
+        console.log("key down has been pressed")
+        }
+
+        if(keypressed=='37'){
+            left_arrow();
+            console.log("key left has been pressed")
+            }
+
+            if(keypressed=='39'){
+                right_arrow();
+                console.log("key right has been pressed")
+                }
 }
-function my_keydown(e)
-{
-	keypressed = e.keyCode;
-	console.log(keyPressed);
-	 
-	if((keypressed>=97 && keyPressed<=122) (keypressed >= 65 && keypressed<=90))
- aplhabetkey();
- document.getElementById("d1").innerHTML="You pressed Alphabet key";
-console.log("alphabet key");
-if((keypressed>=97 && keyPressed<=122) (keypressed >= 65 && keypressed<=90))
-numberkey();
-document.getElementById("d1").innerHTML="You pressed Number key";
-console.log("number key");
-if((keypressed>=97 && keyPressed<=122) (keypressed >= 65 && keypressed<=90))
-Arrowkey();
-document.getElementById("d1").innerHTML="You pressed Arrow key";
-console.log("Arrow key");
-if((keypressed>=97 && keyPressed<=122) (keypressed >= 65 && keypressed<=90))
-specialkey();
-document.getElementById("d1").innerHTML="You pressed special key";
-console.log("special key");
-if((keypressed>=97 && keyPressed<=122) (keypressed >= 65 && keypressed<=90))
-otherkey();
-document.getElementById("d1").innerHTML="You pressed other key";
-console.log("other key");
+function up_arrow(){
+    if(rover_y >=0){
+        rover_y=rover_y-10;
+        uploadbackground();
+        uploadrover();
+    }
 }
-function aplhabetkey()
-{
-img_image"Alpkey.png";
-add();	 
+
+function down_arrow(){
+    if(rover_y <=300){
+        rover_y=rover_y+10;
+        uploadbackground();
+        uploadrover();
+    }
 }
-function numberkey()
-{
-	img_image"numkey.png";
-	add();	 	
+
+function left_arrow(){
+    if(rover_x >=0){
+        rover_x=rover_x-10;
+        uploadbackground();
+        uploadrover();
+    }
 }
-function arrowkey()
-{
-	img_image"Arrkey.png";
-add();	 
+
+function right_arrow(){
+    if(rover_x <=700){
+        rover_x=rover_x+10;
+        uploadbackground();
+        uploadrover();
+    }
 }
-function specialkey()
-{
-	img_image"spkey.png";
-	add();	 	
-}
-function otherkey()
-{
-	img_image="otherkey.png";
-	add();
-}
-	
